@@ -2,13 +2,28 @@
 const { calculateBMI, classifyBMI } = require('../models/bmi');
 
 /**
- * Hàm getBMI xử lý yêu cầu từ client
+ * Hàm `getBMI`
  * 
- * @param {Object} req - Đối tượng yêu cầu từ client, chứa chiều cao và cân nặng trong req.body.
- * @param {Object} res - Đối tượng phản hồi để gửi kết quả về cho client.
+ * Hàm này xử lý yêu cầu POST từ client để tính toán chỉ số BMI,
+ * trả về chỉ số BMI cùng với phân loại của nó.
+ * 
+ * @function getBMI
+ * @param {Object} req - Đối tượng request từ client, chứa chiều cao và cân nặng trong `req.body`.
+ * @param {Object} res - Đối tượng response để gửi phản hồi JSON về cho client.
+ * 
+ * @example
+ * // Yêu cầu từ client:
+ * // POST /bmi
+ * // Body: { "height": 170, "weight": 70 }
+ * 
+ * // Phản hồi:
+ * // {
+ * //   "bmi": "24.22",
+ * //   "classification": "Bình thường"
+ * // }
  */
 const getBMI = (req, res) => {
-    const { height, weight } = req.body;
+    const { height, weight } = req.body; // Lấy chiều cao và cân nặng từ yêu cầu
 
     // Kiểm tra nếu không có chiều cao hoặc cân nặng
     if (!height || !weight) {
@@ -26,3 +41,4 @@ const getBMI = (req, res) => {
 
 // Xuất hàm getBMI
 module.exports = { getBMI };
+
